@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-primary hover:bg-primary-light transition-colors duration-200;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-6 py-3 border border-primary text-base font-medium rounded-lg text-primary bg-transparent hover:bg-primary hover:text-white transition-colors duration-200;
+  }
+  .btn-gold {
+    @apply inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-lg text-dark bg-gold hover:bg-gold-light transition-colors duration-200;
+  }
+  .card {
+    @apply bg-white rounded-xl shadow-sm border border-gray-100 p-6;
+  }
+}
