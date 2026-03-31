@@ -13,7 +13,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <nav className="bg-[#1F2933] text-white sticky top-0 z-50">
           <div className="max-w-7xl mx-auto px-4 flex items-center justify-between h-16">
             <Link href="/" className="flex items-center gap-2">
-              <img src="/logo.png" alt="FörderFinder" className="w-8 h-8" />
+              <img src="/logo.png" alt="FörderFinder" className="w-14 h-14" />
               <span className="text-lg font-bold text-white">FörderFinder</span>
             </Link>
             <div className="hidden md:flex items-center gap-6 text-sm">
