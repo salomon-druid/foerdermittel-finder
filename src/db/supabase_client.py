@@ -65,19 +65,22 @@ def create_funding_programs_table():
     logger.info("Table creation SQL logged. Run in Supabase dashboard.")
 
 
+def _prepare_for_supabase(program: FundingProgram) -> dict:
+    """Convert a FundingProgram to a Supabase-safe dict."""
+    data = program.model_dump(mode="json")
+    # Drop fields that don't exist in the table schema
+    data.pop("raw_data", None)
+    # Convert date/datetime objects to strings
+    for field in ("deadline", "start_date", "created_at", "updated_at"):
+        if data.get(field):
+            data[field] = str(data[field]) if not isinstance(data[field], str) else data[field]
+    return data
+
+
 def upsert_funding_program(program: FundingProgram) -> dict:
     """Insert or update a funding program in Supabase."""
     client = get_client()
-    data = program.model_dump(mode="json")
-    # Convert date objects to strings
-    for field in ("deadline", "start_date"):
-        if data.get(field):
-            data[field] = str(data[field]) if not isinstance(data[field], str) else data[field]
-    if data.get("created_at"):
-        data["created_at"] = str(data["created_at"])
-    if data.get("updated_at"):
-        data["updated_at"] = str(data["updated_at"])
-
+    data = _prepare_for_supabase(program)
     result = client.table("funding_programs").upsert(data).execute()
     return result.data
 
@@ -87,18 +90,7 @@ def upsert_funding_programs(programs: list[FundingProgram]) -> list[dict]:
     if not programs:
         return []
     client = get_client()
-    data = []
-    for program in programs:
-        d = program.model_dump(mode="json")
-        for field in ("deadline", "start_date"):
-            if d.get(field):
-                d[field] = str(d[field]) if not isinstance(d[field], str) else d[field]
-        if d.get("created_at"):
-            d["created_at"] = str(d["created_at"])
-        if d.get("updated_at"):
-            d["updated_at"] = str(d["updated_at"])
-        data.append(d)
-
+    data = [_prepare_for_supabase(p) for p in programs]
     result = client.table("funding_programs").upsert(data).execute()
     logger.info(f"Upserted {len(result.data)} funding programs")
     return result.data
