@@ -1,5 +1,6 @@
 import { supabase } from '@/src/lib/supabase';
 import Link from 'next/link';
+import { scoreMatch, DEMO_COMPANY, ProgramLike } from '@/src/lib/matching';
 
 export default async function DashboardPage() {
   const { count: total } = await supabase
@@ -25,18 +26,17 @@ export default async function DashboardPage() {
     .from('funding_programs')
     .select('*')
     .order('created_at', { ascending: false })
-    .limit(5);
+    .limit(10);
 
-  // Get programs with upcoming deadlines (sorted by deadline, only future)
+  // Get programs with upcoming deadlines
   const { data: deadlines } = await supabase
     .from('funding_programs')
     .select('id, title, provider, deadline')
     .eq('status', 'active')
     .not('deadline', 'is', null)
     .order('deadline', { ascending: true })
-    .limit(5);
+    .limit(10);
 
-  // Filter to only future deadlines and compute days remaining
   const now = new Date();
   const upcomingDeadlines = (deadlines || [])
     .map((p) => {
@@ -47,13 +47,18 @@ export default async function DashboardPage() {
     .filter((p) => p.daysLeft > 0)
     .slice(0, 5);
 
-  // Top matches (hardcoded scores for now)
-  const topMatches = (recent || []).slice(0, 3);
-  const matchScores = [92, 87, 83];
+  // Score all recent programs against the demo company and get top 3
+  const scored = (recent || []).map(p => {
+    const match = scoreMatch(DEMO_COMPANY, p as unknown as ProgramLike);
+    return { ...p, matchScore: match.total_score };
+  }).sort((a, b) => b.matchScore - a.matchScore).slice(0, 3);
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-12">
-      <h1 className="text-3xl font-bold text-[#1F2933] mb-8">Dashboard</h1>
+      <h1 className="text-3xl font-bold text-[#1F2933] mb-2">Dashboard</h1>
+      <p className="text-sm text-gray-400 mb-8">
+        Demo-Profil: IT-KMU, Bayern · 45 MA · Fokus: Innovation, Digitalisierung, KI
+      </p>
 
       {/* Stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
@@ -105,34 +110,36 @@ export default async function DashboardPage() {
           )}
         </div>
 
-        {/* Top Matches */}
+        {/* Top Matches — real scores */}
         <div className="bg-white rounded-xl p-6 border border-gray-100">
           <h2 className="font-bold text-[#1F2933] mb-4">🎯 Top Matches</h2>
-          {topMatches.length === 0 ? (
+          {scored.length === 0 ? (
             <p className="text-sm text-gray-400">Noch keine Matches verfügbar.</p>
           ) : (
             <div className="space-y-3">
-              {topMatches.map((p, i) => (
-                <Link
-                  key={p.id}
-                  href={`/programme/${p.id}`}
-                  className="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 transition"
-                >
-                  <div>
-                    <p className="font-medium text-[#1F2933] text-sm">{p.title}</p>
-                    <p className="text-xs text-gray-400">{p.provider} · {p.category}</p>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <div className="w-16 h-2 bg-gray-100 rounded-full overflow-hidden">
-                      <div
-                        className="h-full bg-[#3e7339] rounded-full"
-                        style={{ width: `${matchScores[i]}%` }}
-                      />
+              {scored.map((p) => {
+                const score = Math.round(p.matchScore);
+                const barColor = score >= 70 ? 'bg-[#3e7339]' : score >= 40 ? 'bg-yellow-500' : 'bg-gray-300';
+                const textColor = score >= 70 ? 'text-[#3e7339]' : score >= 40 ? 'text-yellow-600' : 'text-gray-400';
+                return (
+                  <Link
+                    key={p.id}
+                    href={`/programme/${p.id}`}
+                    className="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 transition"
+                  >
+                    <div>
+                      <p className="font-medium text-[#1F2933] text-sm">{p.title}</p>
+                      <p className="text-xs text-gray-400">{p.provider} · {p.category}</p>
                     </div>
-                    <span className="text-sm font-bold text-[#3e7339]">{matchScores[i]}%</span>
-                  </div>
-                </Link>
-              ))}
+                    <div className="flex items-center gap-2">
+                      <div className="w-16 h-2 bg-gray-100 rounded-full overflow-hidden">
+                        <div className={`h-full ${barColor} rounded-full`} style={{ width: `${score}%` }} />
+                      </div>
+                      <span className={`text-sm font-bold ${textColor}`}>{score}%</span>
+                    </div>
+                  </Link>
+                );
+              })}
             </div>
           )}
         </div>
@@ -163,7 +170,7 @@ export default async function DashboardPage() {
       <div className="bg-white rounded-xl p-6 border border-gray-100">
         <h2 className="font-bold text-[#1F2933] mb-4">Zuletzt hinzugefügt</h2>
         <div className="space-y-3">
-          {(recent || []).map((p) => (
+          {(recent || []).slice(0, 5).map((p) => (
             <a
               key={p.id}
               href={`/programme/${p.id}`}

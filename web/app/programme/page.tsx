@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { supabase, FundingProgram } from '@/src/lib/supabase';
+import { scoreMatch, DEMO_COMPANY, ProgramLike } from '@/src/lib/matching';
 
 async function getPrograms(): Promise<FundingProgram[]> {
   const { data } = await supabase
@@ -23,22 +24,21 @@ function getDeadlineBadge(deadline: string | null): { label: string; color: stri
 
 function getSourceBadge(provider: string): { label: string; color: string } {
   switch (provider) {
-    case 'EU':
-      return { label: '🇪🇺 EU', color: 'bg-blue-50 text-blue-700' };
-    case 'KfW':
-      return { label: '🏦 KfW', color: 'bg-green-50 text-green-700' };
-    case 'Bafa':
-      return { label: '🏛️ BAFA', color: 'bg-purple-50 text-purple-700' };
-    default:
-      return { label: provider, color: 'bg-gray-100 text-gray-600' };
+    case 'EU': return { label: '🇪🇺 EU', color: 'bg-blue-50 text-blue-700' };
+    case 'KfW': return { label: '🏦 KfW', color: 'bg-green-50 text-green-700' };
+    case 'Bafa': return { label: '🏛️ BAFA', color: 'bg-purple-50 text-purple-700' };
+    default: return { label: provider, color: 'bg-gray-100 text-gray-600' };
   }
 }
 
 export default async function ProgramsPage() {
   const programs = await getPrograms();
 
-  // Hardcoded match scores cycling
-  const matchScores = [85, 72, 68, 91, 55, 78, 63, 88, 47, 74];
+  // Score each program against the demo company
+  const scoredPrograms = programs.map(p => {
+    const match = scoreMatch(DEMO_COMPANY, p as unknown as ProgramLike);
+    return { ...p, score: match.total_score };
+  }).sort((a, b) => b.score - a.score);
 
   const formatCurrency = (val: number | null) => {
     if (!val) return null;
@@ -56,7 +56,10 @@ export default async function ProgramsPage() {
           📥 CSV Export
         </a>
       </div>
-      <p className="text-gray-500 mb-8">{programs.length} aktive Programme</p>
+      <p className="text-gray-500 mb-8">
+        {scoredPrograms.length} aktive Programme · Sortiert nach Relevanz
+        <span className="ml-2 text-xs text-gray-400">(Demo-Profil: IT-KMU, Bayern)</span>
+      </p>
 
       {/* Table header */}
       <div className="hidden md:grid grid-cols-12 gap-4 px-5 py-2 text-xs font-medium text-gray-400 uppercase tracking-wider">
@@ -67,10 +70,14 @@ export default async function ProgramsPage() {
       </div>
 
       <div className="space-y-3">
-        {programs.map((p, i) => {
+        {scoredPrograms.map((p) => {
           const deadlineBadge = getDeadlineBadge(p.deadline);
           const sourceBadge = getSourceBadge(p.provider);
-          const score = matchScores[i % matchScores.length];
+          const score = Math.round(p.score);
+
+          // Color coding for match score
+          const scoreColor = score >= 70 ? 'text-[#3e7339]' : score >= 40 ? 'text-yellow-600' : 'text-gray-400';
+          const barColor = score >= 70 ? 'bg-[#3e7339]' : score >= 40 ? 'bg-yellow-500' : 'bg-gray-300';
 
           return (
             <Link
@@ -90,9 +97,9 @@ export default async function ProgramsPage() {
                 <div className="flex items-center justify-between mt-3">
                   <div className="flex items-center gap-2">
                     <div className="w-12 h-2 bg-gray-100 rounded-full overflow-hidden">
-                      <div className="h-full bg-[#3e7339] rounded-full" style={{ width: `${score}%` }} />
+                      <div className={`h-full ${barColor} rounded-full`} style={{ width: `${score}%` }} />
                     </div>
-                    <span className="text-xs font-bold text-[#3e7339]">{score}%</span>
+                    <span className={`text-xs font-bold ${scoreColor}`}>{score}%</span>
                   </div>
                   {deadlineBadge && (
                     <span className={`text-xs px-2 py-1 rounded font-medium ${deadlineBadge.color}`}>
@@ -120,9 +127,9 @@ export default async function ProgramsPage() {
                 <div className="col-span-2">
                   <div className="flex items-center gap-2">
                     <div className="w-16 h-2 bg-gray-100 rounded-full overflow-hidden">
-                      <div className="h-full bg-[#3e7339] rounded-full" style={{ width: `${score}%` }} />
+                      <div className={`h-full ${barColor} rounded-full`} style={{ width: `${score}%` }} />
                     </div>
-                    <span className="text-sm font-bold text-[#3e7339]">{score}%</span>
+                    <span className={`text-sm font-bold ${scoreColor}`}>{score}%</span>
                   </div>
                 </div>
                 <div className="col-span-3 flex items-center justify-between">
