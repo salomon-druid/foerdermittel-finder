@@ -1,11 +1,13 @@
 """Matching engine – scores funding programs against company profiles.
 
 Match dimensions (weighted):
-  - Industry/Sector match:   30%
-  - Company size match:      20%
-  - Region match:            15%
-  - Technology/Focus match:  25%
-  - Deadline proximity:      10%
+  - Industry/Sector match:     25%
+  - Company size match:        15%
+  - Region match:              10%
+  - Technology/Focus match:    20%
+  - Semantic relevance:        15%
+  - Deadline proximity:        10%
+  - Funding amount relevance:   5%
 """
 
 import logging
@@ -18,6 +20,7 @@ from src.models.funding import (
     FundingProgram,
     MatchResult,
 )
+from src.matching.semantic import compute_semantic_score, compute_funding_amount_relevance
 
 logger = logging.getLogger(__name__)
 
@@ -125,7 +128,7 @@ def _score_region(company: CompanyProfile, program: FundingProgram) -> float:
     return 50.0
 
 
-def _score_focus(company: CompanyProfile, program: FundingProgram) -> score:
+def _score_focus(company: CompanyProfile, program: FundingProgram) -> float:
     """Score technology/innovation focus match (0-100)."""
     if not company.focus_areas:
         return 50.0
@@ -176,11 +179,13 @@ def score_match(
     """
     if weights is None:
         weights = {
-            "industry": 0.30,
-            "size": 0.20,
-            "region": 0.15,
-            "focus": 0.25,
+            "industry": 0.25,
+            "size": 0.15,
+            "region": 0.10,
+            "focus": 0.20,
+            "semantic": 0.15,
             "urgency": 0.10,
+            "funding_fit": 0.05,
         }
 
     industry_score = _score_industry(company, program)
@@ -189,12 +194,21 @@ def score_match(
     focus_score = _score_focus(company, program)
     urgency_score = _score_urgency(program)
 
+    # Semantic scoring: expand company keywords via synonyms and match against program text
+    program_text = f"{program.title} {program.description} {' '.join(program.target_groups)} {' '.join(program.requirements)}"
+    semantic_score = compute_semantic_score(company.focus_areas, program_text)
+
+    # Funding amount relevance
+    funding_fit_score = compute_funding_amount_relevance(company.annual_revenue, program.max_funding)
+
     total_score = (
         industry_score * weights["industry"]
         + size_score * weights["size"]
         + region_score * weights["region"]
         + focus_score * weights["focus"]
+        + semantic_score * weights["semantic"]
         + urgency_score * weights["urgency"]
+        + funding_fit_score * weights["funding_fit"]
     )
 
     return MatchResult(
@@ -246,10 +260,6 @@ def find_matches(
     )
 
     return matches[:max_results]
-
-
-# Fix the type hint
-_score_focus.__annotations__["return"] = float
 
 
 if __name__ == "__main__":
