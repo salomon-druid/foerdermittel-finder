@@ -28,7 +28,7 @@ export default async function HomePage() {
             <div className="animate-fade-up" style={{ animationDelay: '0.1s' }}>
               <span className="inline-flex items-center gap-2 px-4 py-1.5 bg-primary/10 text-primary text-sm font-medium rounded-full mb-6">
                 <span className="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
-                150+ Mrd€ Förderung verfügbar
+                80+ Mrd€ Förderung jährlich verfügbar
               </span>
             </div>
 
@@ -36,8 +36,12 @@ export default async function HomePage() {
               Nie wieder <span className="text-primary">Fördergeld</span> verpassen
             </h1>
 
-            <p className="animate-fade-up text-lg md:text-xl text-gray-500 max-w-2xl mx-auto mb-10 leading-relaxed" style={{ animationDelay: '0.3s' }}>
-              FörderFinder überwacht automatisch EU- und nationale Förderprogramme, matched sie auf Ihr Unternehmensprofil und warnt Sie vor Deadlines.
+            <p className="animate-fade-up text-lg md:text-xl text-gray-500 max-w-3xl mx-auto mb-6 leading-relaxed" style={{ animationDelay: '0.3s' }}>
+              Jährlich stehen in Deutschland über 80 Milliarden Euro an Fördermitteln bereit – von Bund, Ländern und der EU. Das Problem: Das Angebot ist unübersichtlich, die Richtlinien ändern sich ständig, und passende Programme verfallen, bevor Unternehmen davon erfahren.
+            </p>
+
+            <p className="animate-fade-up text-base md:text-lg text-gray-600 max-w-3xl mx-auto mb-10 leading-relaxed" style={{ animationDelay: '0.35s' }}>
+              Unser Fördermittel-Finder überwacht automatisch bundesweit und europaweit alle relevanten Förderprogramme – passgenau zu Ihrem Unternehmen. Egal ob Digitalisierung im Handwerk, Innovationsförderung für IT-Dienstleister oder Investitionszuschüsse für produzierende Betriebe: Sie erhalten sofort Bescheid, wenn ein Programm zu Ihrem Profil passt.
             </p>
 
             <div className="animate-fade-up flex flex-col sm:flex-row items-center gap-3 max-w-xl mx-auto" style={{ animationDelay: '0.4s' }}>
@@ -50,8 +54,29 @@ export default async function HomePage() {
             </div>
 
             <p className="animate-fade-up text-xs text-gray-400 mt-4" style={{ animationDelay: '0.5s' }}>
-              14 Tage kostenlos · Keine Kreditkarte · Jederzeit kündbar
+              14 Tage kostenlos · Keine Kreditkarte · Sofort loslegen
             </p>
+
+            <div className="animate-fade-up flex flex-wrap items-center justify-center gap-x-6 gap-y-2 mt-8 text-sm text-gray-500" style={{ animationDelay: '0.55s' }}>
+              <span className="flex items-center gap-1.5">
+                <svg className="w-4 h-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                </svg>
+                Keine stundenlange Recherche
+              </span>
+              <span className="flex items-center gap-1.5">
+                <svg className="w-4 h-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                </svg>
+                Keine verpassten Fristen
+              </span>
+              <span className="flex items-center gap-1.5">
+                <svg className="w-4 h-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                </svg>
+                Kein verpasstes Fördergeld
+              </span>
+            </div>
           </div>
         </div>
       </section>
@@ -62,19 +87,19 @@ export default async function HomePage() {
           <div className="flex flex-wrap items-center justify-center gap-6 md:gap-12 text-sm text-gray-500">
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 rounded-full bg-primary"></div>
-              <span><strong className="text-dark">13+</strong> Förderprogramme</span>
+              <span><strong className="text-dark">Bundesweit & EU</strong> überwacht</span>
             </div>
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 rounded-full bg-gold"></div>
-              <span><strong className="text-dark">EU & National</strong> Quellen</span>
+              <span><strong className="text-dark">Rund um die Uhr</strong> neue Programme</span>
             </div>
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 rounded-full bg-primary"></div>
-              <span><strong className="text-dark">Täglich</strong> aktualisiert</span>
+              <span><strong className="text-dark">Passgenaues</strong> Matching</span>
             </div>
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 rounded-full bg-gold"></div>
-              <span><strong className="text-dark">KI-Matching</strong> für Ihr Profil</span>
+              <span><strong className="text-dark">KI-gestützte</strong> Auswertung</span>
             </div>
           </div>
         </div>
@@ -88,7 +113,7 @@ export default async function HomePage() {
               In <span className="text-primary">3 Schritten</span> zur Förderung
             </h2>
             <p className="text-lg text-gray-500 max-w-2xl mx-auto">
-              Von der Anmeldung bis zur ersten passenden Förderung — es dauert weniger als 5 Minuten.
+              Richten Sie Ihr Unternehmensprofil ein, und unsere Plattform erledigt den Rest. Sie konzentrieren sich auf Ihr Kerngeschäft.
             </p>
           </div>
 
@@ -97,7 +122,7 @@ export default async function HomePage() {
               {
                 step: '01',
                 title: 'Profil erstellen',
-                desc: 'Sagen Sie uns Branche, Größe, Region und Förderinteressen. Wir bauen Ihr Förder-DNA, damit Sie nur relevante Programme sehen.',
+                desc: 'Sie legen einmalig Ihre Unternehmensdaten an – Branche, Unternehmensgröße, Standort, geplante Vorhaben. Wir bauen Ihr Förder-DNA.',
                 icon: (
                   <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
@@ -107,17 +132,17 @@ export default async function HomePage() {
               {
                 step: '02',
                 title: 'Automatisch matchen',
-                desc: 'Unser Algorithmus scannt täglich alle Förderquellen und bewertet sie gegen Ihr Profil. Passende Programme landen direkt in Ihrem Dashboard.',
+                desc: 'Unser System gleicht Ihre Informationen automatisch mit tausenden laufenden und kommenden Förderprogrammen ab. Kein Rauschen, keine Fehlalarme.',
                 icon: (
                   <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />
                   </svg>
                 ),
               },
               {
                 step: '03',
                 title: 'Förderung beantragen',
-                desc: 'Nutzen Sie KI-Zusammenfassungen und Match-Scores, um die besten Förderungen zu identifizieren und rechtzeitig zu beantragen.',
+                desc: 'Nutzen Sie KI-Zusammenfassungen und Benachrichtigungen, um die besten Förderungen zu identifizieren und rechtzeitig zu beantragen.',
                 icon: (
                   <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -146,10 +171,10 @@ export default async function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-dark mb-4">
-              Alles was Sie brauchen, um <span className="text-primary">Förderung zu sichern</span>
+              So finden Sie Förderungen, <span className="text-primary">die wirklich passen</span>
             </h2>
             <p className="text-lg text-gray-500 max-w-2xl mx-auto">
-              Entwickelt für KMUs, die Fördermöglichkeiten nicht mehr manuell suchen wollen.
+              Passgenaue Förderprogramme für Ihr Unternehmen – automatisch und in Echtzeit.
             </p>
           </div>
 
@@ -158,11 +183,31 @@ export default async function HomePage() {
               {
                 icon: (
                   <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />
                   </svg>
                 ),
-                title: 'Multi-Quellen-Monitoring',
-                desc: 'EU-Förderportal, KfW, Bundesanzeiger, Landesprogramme — alle relevanten Quellen an einem Ort.',
+                title: 'Intelligentes Matching nach Unternehmensprofil',
+                desc: 'Unser System gleicht Ihre Unternehmensdaten automatisch mit tausenden laufenden und kommenden Förderprogrammen ab. Ergebnis: Sie sehen nur, was für Sie tatsächlich relevant ist. Kein Rauschen, keine Fehlalarme.',
+                color: 'bg-primary/10 text-primary',
+              },
+              {
+                icon: (
+                  <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
+                  </svg>
+                ),
+                title: 'Echtzeit-Benachrichtigungen bei neuen Fördermöglichkeiten',
+                desc: 'Wir überwachen rund um die Uhr alle relevanten Quellen – von der KfW über Landesförderbanken bis zu EU-Strukturfonds. Sobald ein neues Programm online geht, das zu Ihrem Profil passt, erhalten Sie sofort eine Benachrichtigung.',
+                color: 'bg-gold/10 text-gold',
+              },
+              {
+                icon: (
+                  <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
+                  </svg>
+                ),
+                title: 'Fristenverwaltung mit Erinnerungssystem',
+                desc: 'Wir verfolgen alle relevanten Deadlines für Ihre gematchten Programme und erinnern Sie frühzeitig – Wochen und Tage vor dem Stichtag. So bleibt genug Zeit für die Antragsstellung, ohne dass Sie Kalender pflegen müssen.',
                 color: 'bg-primary/10 text-primary',
               },
               {
@@ -171,54 +216,24 @@ export default async function HomePage() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />
                   </svg>
                 ),
-                title: 'KI-Match-Score',
-                desc: 'Jedes Programm erhält einen Match-Score von 0–100%. Konzentrieren Sie sich auf die Förderungen mit der höchsten Relevanz.',
+                title: 'KI-gestützte Zusammenfassungen komplexer Förderbedingungen',
+                desc: 'Unsere KI fasst die wesentlichen Fördervoraussetzungen, Förderhöhen, Antragsverfahren und Ausschlusskriterien in klaren, verständlichen Punkten zusammen. Sie wissen innerhalb von Minuten, ob sich ein Antrag lohnt.',
                 color: 'bg-gold/10 text-gold',
               },
               {
                 icon: (
                   <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M14.25 9.75L16.5 12l-2.25 2.25m-4.5 0L7.5 12l2.25-2.25M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z" />
                   </svg>
                 ),
-                title: 'Deadline-Warnungen',
-                desc: 'Verpassen Sie keine Antragsfrist. Smarte Erinnerungen 14, 7 und 3 Tage vor Ablauf.',
+                title: 'Nahtlose Integration in Ihre bestehenden Tools',
+                desc: 'Exportieren Sie Förderdaten per API in Ihre Projektmanagement-Software, Ihr ERP-System oder CRM. CSV- und Excel-Exporte ebenfalls verfügbar – ohne doppelte Datenerfassung.',
                 color: 'bg-primary/10 text-primary',
-              },
-              {
-                icon: (
-                  <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />
-                  </svg>
-                ),
-                title: 'KI-Zusammenfassungen',
-                desc: 'Lange Förderbedingungen? Unsere KI extrahiert Förderhöhe, Voraussetzungen und Antragsprozess in Sekunden.',
-                color: 'bg-gold/10 text-gold',
-              },
-              {
-                icon: (
-                  <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" />
-                  </svg>
-                ),
-                title: 'Team-Workflows',
-                desc: 'Weisen Sie Programme Teammitgliedern zu, verfolgen Sie Antragsstatus und arbeiten Sie zusammen.',
-                color: 'bg-primary/10 text-primary',
-              },
-              {
-                icon: (
-                  <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
-                  </svg>
-                ),
-                title: 'Export & Reports',
-                desc: 'Exportieren Sie Förderdaten als CSV oder PDF. Wochenberichte für Geschäftsführung oder Berater.',
-                color: 'bg-gold/10 text-gold',
               },
             ].map((feature, i) => (
               <div
                 key={i}
-                className="card p-8 group hover:-translate-y-1 transition-all duration-300 animate-fade-up"
+                className={`card p-8 group hover:-translate-y-1 transition-all duration-300 animate-fade-up ${i === 4 ? 'md:col-span-2 lg:col-span-1' : ''}`}
                 style={{ animationDelay: `${0.1 + i * 0.08}s` }}
               >
                 <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-5 ${feature.color}`}>
@@ -256,10 +271,10 @@ export default async function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-dark mb-4">
-              Einfache, transparente <span className="text-primary">Preise</span>
+              Transparente Preise, <span className="text-primary">kein Kleingedrucktes</span>
             </h2>
             <p className="text-lg text-gray-500 max-w-2xl mx-auto">
-              14 Tage kostenlos testen. Keine Kreditkarte erforderlich. Upgraden, Downgraden oder jederzeit kündigen.
+              14 Tage kostenlos testen. Keine Kreditkarte erforderlich. Jederzeit monatlich kündbar.
             </p>
           </div>
 
@@ -268,14 +283,18 @@ export default async function HomePage() {
             <div className="card p-8 flex flex-col animate-fade-up" style={{ animationDelay: '0.2s' }}>
               <div className="mb-6">
                 <h3 className="text-lg font-bold text-dark">Starter</h3>
-                <p className="text-sm text-gray-500 mt-1">Für Solo-Gründer & Freelancer</p>
+                <p className="text-sm text-gray-500 mt-1">Ideal für Einzelunternehmen und kleine Betriebe</p>
               </div>
               <div className="mb-6">
                 <span className="text-4xl font-extrabold text-dark">49€</span>
                 <span className="text-gray-500 text-sm">/Monat</span>
               </div>
               <ul className="space-y-3 mb-8 flex-1">
-                {['EU-Förderprogramme', 'E-Mail-Benachrichtigungen', '1 Branche', 'Basis-Matching', 'Deadline-Erinnerungen'].map((item) => (
+                {[
+                  '3 Unternehmensprofile',
+                  'Bis zu 10 Fördermatches pro Monat',
+                  'E-Mail-Benachrichtigungen',
+                ].map((item) => (
                   <li key={item} className="flex items-center gap-3 text-sm text-gray-600">
                     <svg className="w-5 h-5 text-primary flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
@@ -298,14 +317,20 @@ export default async function HomePage() {
               </div>
               <div className="mb-6">
                 <h3 className="text-lg font-bold text-dark">Professional</h3>
-                <p className="text-sm text-gray-500 mt-1">Für wachsende KMUs</p>
+                <p className="text-sm text-gray-500 mt-1">Für wachsende Unternehmen mit mehreren Standorten</p>
               </div>
               <div className="mb-6">
                 <span className="text-4xl font-extrabold text-dark">99€</span>
                 <span className="text-gray-500 text-sm">/Monat</span>
               </div>
               <ul className="space-y-3 mb-8 flex-1">
-                {['Alle Quellen (EU, KfW, Bundesanzeiger)', 'KI-Matching (0–100%)', 'Unbegrenzte Branchen', 'KI-Zusammenfassungen', 'Deadline-Warnungen', 'E-Mail + Slack Alerts', 'CSV/PDF Export', 'Priority Support'].map((item) => (
+                {[
+                  'Unbegrenzte Unternehmensprofile',
+                  'Unbegrenzte Matches',
+                  'Echtzeit-Alerts',
+                  'Fristenmanagement',
+                  'KI-Zusammenfassungen',
+                ].map((item) => (
                   <li key={item} className="flex items-center gap-3 text-sm text-gray-600">
                     <svg className="w-5 h-5 text-primary flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
@@ -323,14 +348,19 @@ export default async function HomePage() {
             <div className="card p-8 flex flex-col animate-fade-up" style={{ animationDelay: '0.4s' }}>
               <div className="mb-6">
                 <h3 className="text-lg font-bold text-dark">Enterprise</h3>
-                <p className="text-sm text-gray-500 mt-1">Für Berater & große Organisationen</p>
+                <p className="text-sm text-gray-500 mt-1">Für Beratungsunternehmen, Kammern und Verbände</p>
               </div>
               <div className="mb-6">
                 <span className="text-4xl font-extrabold text-dark">199€</span>
                 <span className="text-gray-500 text-sm">/Monat</span>
               </div>
               <ul className="space-y-3 mb-8 flex-1">
-                {['Alles in Professional', 'REST API-Zugang', 'Team-Workflows', 'Multi-Unternehmen', 'White-Label Reports', 'Dedizierter Support', 'Individuelle Integrationen'].map((item) => (
+                {[
+                  'API-Zugang',
+                  'White-Label-Option',
+                  'Dedizierter Support',
+                  'Individuelle SLA',
+                ].map((item) => (
                   <li key={item} className="flex items-center gap-3 text-sm text-gray-600">
                     <svg className="w-5 h-5 text-primary flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
@@ -344,6 +374,10 @@ export default async function HomePage() {
               </Link>
             </div>
           </div>
+
+          <p className="text-center text-sm text-gray-400 mt-8">
+            Alle Pakete enthalten eine <strong>14-tägige kostenlose Testphase</strong> – ohne Kreditkarte, ohne Verpflichtung. Jederzeit monatlich kündbar. Alle Preise zzgl. MwSt.
+          </p>
         </div>
       </section>
 
@@ -363,27 +397,27 @@ export default async function HomePage() {
             {[
               {
                 q: 'Welche Förderquellen überwacht FörderFinder?',
-                a: 'Wir überwachten aktuell das EU-Förderportal, KfW-Programme, den Bundesanzeiger und ausgewählte Landesprogramme. Die Liste wird laufend erweitert.'
+                a: 'Wir überwachen bundesweit und europaweit alle relevanten Förderprogramme – von der KfW über Landesförderbanken bis zu EU-Strukturfonds. Die Liste wird laufend erweitert.'
               },
               {
-                q: 'Wie funktioniert das KI-Matching?',
-                a: 'Unser Algorithmus analysiert Ihr Unternehmensprofil — Branche, Größe, Region, bisherige Förderungen — und bewertet jedes neue Programm anhand dieser Kriterien. Sie erhalten einen 0–100% Match-Score.'
+                q: 'Wie funktioniert das Matching?',
+                a: 'Sie legen einmalig Ihre Unternehmensdaten an – Branche, Unternehmensgröße, Standort, geplante Vorhaben. Unser System gleicht diese Informationen automatisch mit tausenden laufenden und kommenden Förderprogrammen ab.'
               },
               {
                 q: 'Kann ich FörderFinder vor der Zahlung testen?',
                 a: 'Ja. Jedes Paket beinhaltet einen 14-tägigen kostenlosen Test. Keine Kreditkarte erforderlich. Voller Zugriff auf alle Features.'
               },
               {
-                q: 'Wie unterscheidet sich FörderFinder von Google Alerts?',
-                a: 'Google Alerts liefert unstrukturierte News. FörderFinder versteht Förderprogramme — Voraussetzungen, Fristen, Förderhöhe — und matched sie strukturiert auf Ihr Profil.'
+                q: 'Wie funktionieren die KI-Zusammenfassungen?',
+                a: 'Unsere KI fasst die wesentlichen Fördervoraussetzungen, Förderhöhen, Antragsverfahren und Ausschlusskriterien in klaren, verständlichen Punkten zusammen. Sie wissen innerhalb von Minuten, ob sich ein Antrag für Ihr Vorhaben lohnt.'
               },
               {
                 q: 'Kann ich jederzeit kündigen?',
                 a: 'Ja. Keine langfristigen Verträge. Sie können jederzeit upgraden, downgraden oder kündigen. Bei Kündigung behalten Sie Zugang bis zum Ende der Abrechnungsperiode.'
               },
               {
-                q: 'Ist mein Unternehmen in der Datenbank sichtbar?',
-                a: 'Nein. Ihre Unternehmensdaten werden ausschließlich für das Matching verwendet und nicht an Dritte weitergegeben. DSGVO-konform.'
+                q: 'Lässt sich FörderFinder in unsere bestehenden Tools integrieren?',
+                a: 'Ja. Exportieren Sie Förderdaten per API in Ihre Projektmanagement-Software, Ihr ERP-System oder CRM-Lösung. CSV- und Excel-Exporte sind ebenfalls verfügbar.'
               },
             ].map((item, i) => (
               <details key={i} className="card group">
@@ -410,11 +444,11 @@ export default async function HomePage() {
               Verpassen Sie keine Förderung mehr
             </h2>
             <p className="text-white/80 max-w-lg mx-auto mb-8 text-lg">
-              Starten Sie noch heute und entdecken Sie Förderungen, die zu Ihrem Unternehmen passen.
+              Richten Sie Ihr Unternehmensprofil ein, und unsere Plattform erledigt den Rest. Sie konzentrieren sich auf Ihr Kerngeschäft.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link href="/dashboard" className="btn-gold !text-dark !px-8 !py-4 text-base">
-                Kostenlosen Testzugang starten
+                Kostenlos testen – 14 Tage, keine Kreditkarte
               </Link>
               <Link href="/programme" className="text-white/80 hover:text-white text-sm font-medium transition-colors">
                 Programme ansehen →
