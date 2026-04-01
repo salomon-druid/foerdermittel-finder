@@ -1,5 +1,6 @@
 import './globals.css';
 import Link from 'next/link';
+import { cookies } from 'next/headers';
 
 export const metadata = {
   title: 'FörderFinder — Nie wieder Fördergeld verpassen',
@@ -7,6 +8,10 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const cookieStore = cookies();
+  const isAuthenticated = cookieStore.get('authenticated')?.value === 'true';
+  const userEmail = cookieStore.get('user_email')?.value || '';
+
   return (
     <html lang="de">
       <body className="min-h-screen bg-[#F5F4F1]">
@@ -20,7 +25,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <Link href="/" className="text-white/80 hover:text-white">Start</Link>
               <Link href="/programme" className="text-white/80 hover:text-white">Programme</Link>
               <Link href="/dashboard" className="text-white/80 hover:text-white">Dashboard</Link>
-              <Link href="/dashboard" className="px-4 py-2 bg-[#3e7339] rounded-lg hover:bg-[#356431] transition">Kostenlos testen</Link>
+              {isAuthenticated ? (
+                <div className="flex items-center gap-4">
+                  <span className="text-green-400 text-xs font-medium">✓ Angemeldet</span>
+                  <span className="text-white/60 text-xs">{userEmail}</span>
+                  <form action="/api/auth/logout" method="POST">
+                    <button type="submit" className="text-white/80 hover:text-white text-xs underline">Abmelden</button>
+                  </form>
+                </div>
+              ) : (
+                <Link href="/login" className="px-4 py-2 bg-[#3e7339] rounded-lg hover:bg-[#356431] transition">Login</Link>
+              )}
             </div>
           </div>
         </nav>
